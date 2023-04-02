@@ -116,16 +116,16 @@ function setFiveDayForecast(data) {
 // get weather data based on search input
 
 function loadSearch() {
-    
+
     chosenCity = userCity.val().trim();
     updateScreen(chosenCity);
-    console.log(chosenCity);
+
 }
 
 // get weather data based on past search
 
-function loadPastCity() {
-    var pastCity = target.textContent;
+function loadPastCity(e) {
+    var pastCity = e.target.textContent;
     updateScreen(pastCity);
 }
 
@@ -139,7 +139,7 @@ function createRecentSearch(chosenCity) {
 
     recentSearchARR.unshift(chosenCity);
 
-    if (recentSearchARR > 7) {
+    if (recentSearchARR.length > 5) {
         recentSearchARR.pop();
     }
 
@@ -152,8 +152,13 @@ function addRecentSearchButton(recentSearchARR) {
     recentCityUl.empty();
 
     for (var search of recentSearchARR) {
-        var newLi = $("<li></li>").text(search);
-        recentCityUl.append(newLi);
+        var newButton = $("<button></button>").text(search);
+        $(newButton).addClass("btn");
+        $(newButton).addClass("btn btn-secondary");
+        $(newButton).addClass("w-100");
+        $(newButton).addClass("mt-3");
+        recentCityUl.append(newButton);
+        
     }
 }
 
