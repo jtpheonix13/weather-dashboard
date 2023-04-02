@@ -81,7 +81,7 @@ function init() {
 function setCurrentWeather(newData) {
     var cityName = newData.name;
     currentCity.text(cityName);
-    currentDay.text(dayjs().format("(MM-DD-YYYY)"));
+    currentDay.text(dayjs().format(" MM-DD-YYYY"));
     var icon = newData.weather[0].icon;
     currentIcon.attr("src", `https://openweathermap.org/img/wn/${icon}@2x.png`);
     var temp = parseInt(newData.main.temp);
@@ -116,8 +116,10 @@ function setFiveDayForecast(data) {
 // get weather data based on search input
 
 function loadSearch() {
+    
     chosenCity = userCity.val().trim();
     updateScreen(chosenCity);
+    console.log(chosenCity);
 }
 
 // get weather data based on past search
